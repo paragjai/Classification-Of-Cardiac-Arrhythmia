@@ -56,7 +56,8 @@ img = ImageTk.PhotoImage(Image.open(path))
 l = Label(master, image = img)
 l.place(x=1000, y=50)
 
-path1 = "C:\Python27\CardiacArrhythmia\MicrosoftLogo.PNG"
+#Path of the directory MircrosoftLogo.PNG is in
+path1 = "MicrosoftLogo.PNG"
 
 img = ImageTk.PhotoImage(Image.open(path1))
 l2 = Label(master, image = img)
