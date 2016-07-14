@@ -1,16 +1,12 @@
 '''VFI5: CONSIDERING AL LOWER BOUNDS AS POINT INTERVALS'''
 import random
 import math
-from Tkinter import *
-
-
-    
 #GLOBAL VARIABLES:
 D = {}
 e =  2.71828
 DMV = {}
 total = 420
-train_no = int(0.9*total)
+train_no = int(1*total)
 test_no = total -train_no
 features_no = 163
 class_total = 16
@@ -23,67 +19,14 @@ T=[]
 Endpoints=[]
 Classdist=[]
 Ptdist=[]
-k = 2
-#TO CROSS VALIDATE
-def crossval():
-    child = Tk()
-    child.title("VFI5 Accuracy")
-    child.geometry("300x300")
 
-    dataset()
-    accuracy =0
-    global train_no
-    pos =0
-    j=0
-    pos_x=60
-    pos_y=50
-    while(pos<=total):
-        #print pos
-        if((pos+int(total/k)) > total ):
-            if(total-pos)<10:
-                break
-            tester1 = L[pos:total]
-            n=k+1
-            pos = total+1
-        else:
-            tester1 = L[pos:(((j+1)*(int(total/k))))]
-            pos=int(((j+1)*(total/k)))
-            n=k
-        j+=1
-        trainSet = list(set(tuple(x) for x in L) - set(tuple(x) for x in tester1))
-        train_no = len(trainSet)
-        datatrain(trainSet)
-        test_data(tester1)
-        endpoints()
-        countinterval()
-        accuracy1 = test()
-        accuracy1 = round(accuracy1,2)
-        #la = Label(child, text="Hello")
-        #la.pack()
-        label1 = Label(child, text="Fold "+str(j)+": ", fg="red")
-        label1.place(x=pos_x,y=pos_y)
-        label2 = Label(child, text=str(accuracy1)+" %")
-        label2.place(x=pos_x+60, y=pos_y)
-        pos_y = pos_y+20
-        print 'Accuracy of fold ',j, ' is = ' ,accuracy1
-        accuracy+=accuracy1
-        
-    accuracy = float(accuracy)/float(n)
-    print 'Average accuracy of all ', n ,' folds = ', accuracy
-
-    accuracy = round(accuracy,2)
-    label3 = Label(child, text="Average: ",fg="red")
-    label3.place(x=pos_x, y=pos_y)
-    label4 = Label(child, text=str(accuracy)+" %")
-    label4.place(x=pos_x+60, y=pos_y)
-    mainloop()
-
-#TO GET TEST DATASET IN FORM OF LIST
+#TO GET TEST DATASET IN FORM OF DICTIONARY
 def dataset():
     text_file = open("data_2.txt", "r")
     x=0
     X=[]
     Y=[]
+    f=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     while(x<total):
         L.append(list(text_file.readline().split("\t")))
         x=x+1
@@ -93,11 +36,6 @@ def dataset():
     #print(L)
     i=0
     random.shuffle(L)
-
-#TO GET TRAIN DATA IN DICTIONARY
-def datatrain(L):
-    i=0
-    f=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     while(i<train_no):
         index = int(((L[i][features_no])-1))
         if(f[index]==0):
@@ -117,8 +55,6 @@ def datatrain(L):
 #TO GET ENDPOINTS OF EACH CLASS OF EACH FEATURE
 
 def endpoints():
-    global Endpoints
-    Endpoints=[]
     for k in range(features_no):
         Endpoints1=[]
         Endpoints1.append(-1000)
@@ -142,10 +78,7 @@ def endpoints():
     #print Ptintervals
 
 #To count no of instances of each class in each interval of each feature
-def countinterval():
-    global Classdist, Ptdist
-    Ptdist =[]
-    Classdist =[]
+def countinterval(): 
     for k in range(features_no):
         #print(Endpoints[k])
         Classdist1 =[]
@@ -279,35 +212,41 @@ def classify(ex):
 
 
 
-#TO CLASSIFY ALL TEST CASES
+#TO CLASSIFY ALL CASES
 def test():
-    T=[]
     for i in range(len(tester)):
         T.append(classify(tester[i]))
     count =0
     for i in range(len(T)):
         if(T[i] == int(labels[i])):
             count= count+1
-        #print(T[i],labels[i])
-    #print count
-    #print int(len(labels))
+        print(T[i],labels[i])
+    print count
+    print int(len(labels))
     accuracy = (float(count)/ float(len(labels)))*100
-    #print("acc",acuracy)
-    return accuracy              
+    print("acc",accuracy)
+                   
                    
 
 #TO GET TEST DATA SET
-def test_data(L):
-    global labels
-    labels =[]
-    global tester
-    tester =[]
-    for i in range(len(L)):
+def test_data():
+    X=[]
+    for i in range(train_no, total):
         tester.append(L[i][:features_no])
         labels.append(L[i][features_no])
     #print(tester)
+
+
+def vfi5(data):
+    return classify(data)
+
+
+dataset()
+print '1'
 endpoints()
+print '2'
 countinterval()
-classify(tester[0])
-def vfi(data):
-    print classify(data)
+print '3'
+test_data()
+
+

@@ -1,4 +1,5 @@
-'''VFI1'''
+'''VFI2: TAKE MIDPOINTS AS INTERVALS'''
+
 import random
 import math
 #GLOBAL VARIABLES:
@@ -51,12 +52,12 @@ def dataset():
             f[i]=1
     #print(D)
 
-#TO GET ENDPOINTS OF EACH CLASS OF EACH FEATURE
+#TO GET ENDPOINTS OF EACH CLASS OF EACH FEATURE AND TO TAKE THE MODPOINTS
 
 def endpoints():
+    Endpoints2=[]
     for k in range(features_no):
         Endpoints1=[]
-        Endpoints1.append(-1000)
         for i in range(class_total):
             L=[]
             for j in range(len(D[i])):
@@ -66,14 +67,24 @@ def endpoints():
             if(len(L)!=0):
                 Endpoints1.append(min(L))
                 Endpoints1.append(max(L))
-        Endpoints1.append(max(Endpoints1)+1000)
-        Endpoints.append(Endpoints1)
-    #print(Endpoints)
+        Endpoints2.append(Endpoints1)
+    #print(Endpoints2)
     for i in range(features_no):
-        Endpoints[i] = list(set(Endpoints[i]))
-        Endpoints[i].sort()
+        Endpoints2[i] = list(set(Endpoints2[i]))
+        Endpoints2[i].sort()
     #print(Endpoints)
     #print(Endpoints[19])
+    for i in range(features_no):
+        Endpoints1 =[]
+        Endpoints1.append(-1000)
+        for j in range(len(Endpoints2[i])-1):
+            mid = float(Endpoints2[i][j] + Endpoints2[i][j+1])/2.0
+            Endpoints1.append(mid)
+        Endpoints1.append(max(Endpoints1) +1000)
+        Endpoints.append(Endpoints1)
+    #print(Endpoints[0])
+    
+    
 
 #To count no of instances of each class in each interval of each feature
 def countinterval(): 
@@ -157,25 +168,10 @@ def classify(ex):
     #print(Vote)
     m = max(Vote)
     #print m
-    VoteClass =[]
-    s = sum(Vote)
     for i in range(class_total):
         if Vote[i] == m:
             pos =i
-    for i in range(class_total):
-        Voteclass1=[]
-        Voteclass1.append(Vote[i])
-        Voteclass1.append(i+1)
-        VoteClass.append(Voteclass1)
-    VoteClass.sort(reverse= True)
-
-    print 'Class', '\tVote'
-    for i in range(class_total):
-        print VoteClass[i][1],'\t', VoteClass[i][0]
-
-    
     return pos+1
-
 
 
 #TO CLASSIFY ALL CASES
@@ -187,9 +183,9 @@ def test():
         if(T[i] == labels[i]):
             count= count+1
         print(T[i],labels[i])
-    #print count
-    #print len(labels)
-    accuracy = (float(count)/ float(len(tester)))*100
+    print count
+    print len(labels)
+    accuracy = (float(count)/ float(len(labels)))*100
     print("acc",accuracy)
                    
                    
@@ -201,7 +197,9 @@ def test_data():
         tester.append(L[i][:features_no])
         labels.append(L[i][features_no])
     #print(tester)
-def vfi(data):
+
+
+def vfi2(data):
     return classify(data)
 
 dataset()
@@ -211,6 +209,4 @@ print '2'
 countinterval()
 print '3'
 test_data()
-
-
 

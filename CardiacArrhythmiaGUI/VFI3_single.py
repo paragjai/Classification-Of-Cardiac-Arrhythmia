@@ -1,4 +1,4 @@
-'''VFI1'''
+'''VFI3: MODIFICATION OF LOWER BOUND CONDITIONS AND FINAL NORMALISATION'''
 import random
 import math
 #GLOBAL VARIABLES:
@@ -73,7 +73,7 @@ def endpoints():
         Endpoints[i] = list(set(Endpoints[i]))
         Endpoints[i].sort()
     #print(Endpoints)
-    #print(Endpoints[19])
+    #print(Endpoints[0])
 
 #To count no of instances of each class in each interval of each feature
 def countinterval(): 
@@ -91,8 +91,13 @@ def countinterval():
                     #print(D[i][j][k])
                     if(D[i][j][k]!=999):
                         if(D[i][j][k] == int(Endpoints[k][l]) and l!=min(Endpoints[k])):
-                            Classdist1[l][i] = Classdist1[l][i] + 0.5
-                            Classdist1[l-1][i] = Classdist1[l-1][i] + 0.5
+                            if(D[i][j][k]==Endpoints[k][1]):
+                                Classdist1[l][i] = Classdist1[l][i] +1
+                            elif(D[i][j][k]==Endpoints[k][-2]):
+                                Classdist1[l-1][i] = Classdist1[l-1][i] +1
+                            else:
+                                Classdist1[l][i] = Classdist1[l][i] + 0.5
+                                Classdist1[l-1][i] = Classdist1[l-1][i] + 0.5
                         elif( D[i][j][k] in range(int(Endpoints[k][l]) , int(Endpoints[k][l+1]))):
                             #print(Classdist[l][i])
                             Classdist1[l][i] = Classdist1[l][i] +1
@@ -132,7 +137,12 @@ def find_interval(f,ef):
             #print Endpoints[f]
             return [i]
         elif (ef==Endpoints[f][i]):
-            return [i, i-1]
+            if(ef == Endpoints[f][1]):
+                return [i]
+            elif (ef==Endpoints[f][-2]):
+                return [i-1]
+            else:
+                return [i, i-1]
 
 
 
@@ -144,6 +154,7 @@ def classify(ex):
     #print(Vote)
     for i in range(class_total):
         for j in range(features_no):
+            Vote1=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             interval = find_interval(j, ex[j])
             if(ex[j]!=999 and interval!=None):
                 #print tester[i][j]
@@ -151,29 +162,22 @@ def classify(ex):
                     #print( j , interval , k)
                     if(len(D[k])!=0):
                         if(len(interval) ==1):
-                            Vote[k] += float(Classdist[j][int(interval[0])][k])
+                            Vote1[k] += float(Classdist[j][int(interval[0])][k])
                         elif(len(interval) ==2):
-                            Vote[k] += (float(Classdist[j][int(interval[0])][k]) + float(Classdist[j][int(interval[1])][k]))/2.0
+                            Vote1[k] += (float(Classdist[j][int(interval[0])][k]) + float(Classdist[j][int(interval[1])][k]))/2.0
+                for m in range(class_total):
+                    if(sum(Vote1)!=0):
+                        Vote1[m]=float(Vote1[m])/float(sum(Vote1))
+                    #print(sum(Vote1))
+                for m in range(class_total):
+                    Vote[m]+=Vote1[m]
+                
     #print(Vote)
     m = max(Vote)
     #print m
-    VoteClass =[]
-    s = sum(Vote)
     for i in range(class_total):
         if Vote[i] == m:
             pos =i
-    for i in range(class_total):
-        Voteclass1=[]
-        Voteclass1.append(Vote[i])
-        Voteclass1.append(i+1)
-        VoteClass.append(Voteclass1)
-    VoteClass.sort(reverse= True)
-
-    print 'Class', '\tVote'
-    for i in range(class_total):
-        print VoteClass[i][1],'\t', VoteClass[i][0]
-
-    
     return pos+1
 
 
@@ -184,12 +188,12 @@ def test():
         T.append(classify(tester[i]))
     count =0
     for i in range(len(T)):
-        if(T[i] == labels[i]):
+        if(T[i] == int(labels[i])):
             count= count+1
         print(T[i],labels[i])
-    #print count
-    #print len(labels)
-    accuracy = (float(count)/ float(len(tester)))*100
+    print count
+    print int(len(labels))
+    accuracy = (float(count)/ float(len(labels)))*100
     print("acc",accuracy)
                    
                    
@@ -201,7 +205,9 @@ def test_data():
         tester.append(L[i][:features_no])
         labels.append(L[i][features_no])
     #print(tester)
-def vfi(data):
+
+
+def vfi3(data):
     return classify(data)
 
 dataset()
@@ -211,6 +217,4 @@ print '2'
 countinterval()
 print '3'
 test_data()
-
-
 

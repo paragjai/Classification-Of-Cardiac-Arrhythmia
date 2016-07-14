@@ -1,6 +1,7 @@
 import numpy as np
 import scipy
 from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 import random
 from Tkinter import *
@@ -74,7 +75,7 @@ def decision_tree():
         K = L[offset:offset+test_size]
         K = np.delete(K,np.s_[c],1)
 
-        clf=SVC(kernel="linear",C=10000,gamma=100)
+        clf = DecisionTreeClassifier(random_state=0)
         clf.fit(X,Y)
 
 
