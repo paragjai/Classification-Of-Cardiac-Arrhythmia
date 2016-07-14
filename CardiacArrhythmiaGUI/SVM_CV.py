@@ -3,7 +3,7 @@ import scipy
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 import random
-from Tkinter import *
+from tkinter import *
 
 def svm():
     text_file = open("data_proper.txt", "r")

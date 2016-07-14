@@ -3,7 +3,7 @@ import scipy
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
 import random
-from Tkinter import *
+from tkinter import *
 
 def naive_bayes():
     text_file = open("data_2.txt", "r")

@@ -4,7 +4,7 @@ import scipy
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 import random
-from Tkinter import *
+from tkinter import *
 
 def knn():
 

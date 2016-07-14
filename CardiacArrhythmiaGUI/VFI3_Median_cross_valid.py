@@ -1,7 +1,7 @@
 '''VFI3: MODIFICATION OF LOWER BOUND CONDITIONS AND FINAL NORMALISATION'''
 import random
 import math
-from Tkinter import *
+from tkinter import *
 
 
     
@@ -67,12 +67,12 @@ def crossval():
         label2 = Label(child, text=str(accuracy1)+" %")
         label2.place(x=pos_x+60, y=pos_y)
         pos_y = pos_y+20
-        print 'Accuracy of fold ',j, ' is = ' ,accuracy1
+        print('Accuracy of fold ',j, ' is = ' ,accuracy1)
         accuracy+=accuracy1
 
         
     accuracy = float(accuracy)/float(n)
-    print 'Average accuracy of all ', n ,' folds = ', accuracy
+    print('Average accuracy of all ', n ,' folds = ', accuracy)
     accuracy = round(accuracy,2)
     label3 = Label(child, text="Average: ",fg="red")
     label3.place(x=pos_x, y=pos_y)

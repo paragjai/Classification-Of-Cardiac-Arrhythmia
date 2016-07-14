@@ -1,4 +1,4 @@
-from Tkinter import *
+from tkinter import *
 from PIL import ImageTk, Image
 import Naive_CV as nb
 import KNN_CV as knn
@@ -50,11 +50,11 @@ def svm():
 
 master = Tk()
 master.title("Cardiac Arrhythmia")
-path = "C:\Users\Parag Jain\Desktop\Capture1.PNG"
+path ="MicrosoftLogo.png"
 
-img = ImageTk.PhotoImage(Image.open(path))
-l = Label(master, image = img)
-l.place(x=1000, y=50)
+#img = ImageTk.PhotoImage(Image.open(path))
+#l = Label(master, image = img)
+#l.place(x=1000, y=50)
 
 #Path of the directory MircrosoftLogo.PNG is in
 path1 = "MicrosoftLogo.PNG"
