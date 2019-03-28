@@ -1,13 +1,13 @@
-from Tkinter import *
+from tkinter import *
 
 master = Tk()
 import User_Interface as ofnew
 import Page2 as p2
 def askOffsets():
-    print 'Correct till here'
+    print('Correct till here')
     of = ofnew.ui()
 def callpage2():
-    print 'Correct till here2'
+    print('Correct till here2')
     of = p2.page2()
 button1 = Button(master, text="Check type of arrhythmia for single patient",  command = callpage2, height=2, width=50)
 button1.place(x=500, y=200)

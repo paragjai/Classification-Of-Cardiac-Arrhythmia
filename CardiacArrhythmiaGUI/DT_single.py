@@ -1,6 +1,6 @@
 from sklearn.metrics import accuracy_score
 import random
-from Tkinter import *
+from tkinter import *
 import numpy as np
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
@@ -28,8 +28,9 @@ def Dt(data):
             i=i+1
         clf = DecisionTreeClassifier(random_state=0)
         clf.fit(X,Y)
-        pred=(clf.predict(data))
+        querying_data = [data]
+        pred=(clf.predict(querying_data))
         test= []
         i=0
-        print pred[0]
+        print(pred[0])
         return pred[0]

@@ -3,7 +3,7 @@ import scipy
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
 import random
-from Tkinter import *
+from tkinter import *
 
 def naive_bayes():
     text_file = open("data_2.txt", "r")
@@ -58,9 +58,6 @@ def naive_bayes():
             Y.append(L[j][c]) ##Selecting the Training Label set
             j=j+1
 
-
-
-
         for q in range(test_size):
             X = np.delete(X,[offset],0)
             Y = np.delete(Y,[offset],0)
@@ -81,7 +78,8 @@ def naive_bayes():
 
         acc = (accuracy_score(pred,Z)*100)
         acc = round(acc, 2)
-        print ("Fold %s: Accuracy: %s") %(t,acc)
+        #print ("Fold %s: Accuracy: %s") %(t,acc)
+        print("Fold : ", t, ", Accuracy: ", acc)
         sum1 = sum1 + acc
         
         label1 = Label(child, text="Fold "+str(t)+": ", fg="red")
@@ -95,7 +93,8 @@ def naive_bayes():
     avgAccuracy = (sum1/k)
     avgAccuracy = round(avgAccuracy, 2)
 
-    print ("Average Accuracy for %s folds is %s") %(k,avgAccuracy)
+    #print ("Average Accuracy for %s folds is %s") %(k,avgAccuracy)
+    print("Average Accuracy for ", k, " folds is ", avgAccuracy)
     label3 = Label(child, text="Average: ",fg="red")
     label3.place(x=pos_x, y=pos_y)
     label4 = Label(child, text=str(avgAccuracy)+" %")

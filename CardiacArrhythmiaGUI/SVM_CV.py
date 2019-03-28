@@ -3,7 +3,7 @@ import scipy
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 import random
-from Tkinter import *
+from tkinter import *
 
 def svm():
     text_file = open("data_proper.txt", "r")
@@ -83,7 +83,8 @@ def svm():
 
         acc = (accuracy_score(pred,Z)*100)
         acc = round(acc,2)
-        print ("Fold %s: Accuracy: %s") %(t,acc)
+        #print ("Fold %s: Accuracy: %s") %(t,acc)
+        print("Fold : ", t, ", Accuracy: ", acc);
         sum1 = sum1 + acc
 
         label1 = Label(child, text="Fold "+str(t)+": ", fg="red")
@@ -95,7 +96,8 @@ def svm():
 
     avgAccuracy = (sum1/k)
 
-    print ("Average Accuracy for %s folds is %s") %(k,avgAccuracy)
+    #print ("Average Accuracy for %s folds is %s") %(k,avgAccuracy)
+    print("Average Accuracy for ", k, " folds is ", avgAccuracy)
     label3 = Label(child, text="Average: ",fg="red")
     label3.place(x=pos_x, y=pos_y)
     label4 = Label(child, text=str(avgAccuracy)+" %")

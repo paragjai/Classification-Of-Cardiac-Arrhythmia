@@ -3,7 +3,7 @@ import scipy
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
 import random
-from Tkinter import *
+from tkinter import *
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 
@@ -30,10 +30,11 @@ def nb(data):
             i=i+1
         clf=GaussianNB()
         clf.fit(X,Y)
-        pred=(clf.predict(data))
+        querying_data = [data]
+        pred=(clf.predict(querying_data))
         test= []
         i=0
-        print pred[0]
+        print(pred[0])
         return pred[0]
 
 

@@ -169,9 +169,9 @@ def classify(ex):
         VoteClass.append(Voteclass1)
     VoteClass.sort(reverse= True)
 
-    print 'Class', '\tVote'
+    print('Class', '\tVote')
     for i in range(class_total):
-        print VoteClass[i][1],'\t', VoteClass[i][0]
+        print(VoteClass[i][1],'\t', VoteClass[i][0])
 
     
     return pos+1
@@ -205,11 +205,11 @@ def vfi(data):
     return classify(data)
 
 dataset()
-print '1'
+print('1')
 endpoints()
-print '2'
+print('2')
 countinterval()
-print '3'
+print('3')
 test_data()
 
 

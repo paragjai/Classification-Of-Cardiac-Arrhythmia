@@ -3,8 +3,9 @@ import warnings
 warnings.filterwarnings("ignore")
 import random
 import copy
-from sklearn.lda import *
-from Tkinter import *
+import sklearn.discriminant_analysis
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
+from tkinter import *
 
 dataset=[]
 X=[]
@@ -74,12 +75,12 @@ def crossval():
         label2.place(x=pos_x+60, y=pos_y)
         pos_y = pos_y+20
 
-        print 'Accuracy of fold ',j, ' is = ' ,accuracy1
+        print('Accuracy of fold ',j, ' is = ' ,accuracy1)
         accuracy+=accuracy1
 
         
     accuracy = float(accuracy)/float(n)
-    print 'Average accuracy of all ', n ,' folds = ', accuracy
+    print('Average accuracy of all ', n ,' folds = ', accuracy)
     accuracy = round(accuracy,2)
     label3 = Label(child, text="Average: ",fg="red")
     label3.place(x=pos_x, y=pos_y)

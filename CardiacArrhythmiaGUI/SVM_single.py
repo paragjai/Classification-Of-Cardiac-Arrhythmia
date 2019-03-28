@@ -31,8 +31,9 @@ def svm(data):
     test= []
     i=0
     pred =[]
-    pred=(clf.predict(data))
-    print pred[0]
+    querying_data = [data]
+    pred=(clf.predict(querying_data))
+    print(pred[0])
     return pred[0]
 
 

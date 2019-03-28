@@ -236,8 +236,8 @@ def test():
         if(T[i] == int(labels[i])):
             count= count+1
         print(T[i],labels[i])
-    print count
-    print int(len(labels))
+    print(count)
+    print(int(len(labels)))
     accuracy = (float(count)/ float(len(labels)))*100
     print("acc",accuracy)
                    
@@ -255,11 +255,11 @@ def test_data():
 def vfi4(data):
     return classify(data)
 dataset()
-print '1'
+print('1')
 endpoints()
-print '2'
+print('2')
 countinterval()
-print '3'
+print('3')
 test_data()
 
 

@@ -1,4 +1,4 @@
-from Tkinter import *
+from tkinter import *
 import operator
 def page2():
     content =[]
@@ -14,7 +14,7 @@ def page2():
     import LDA_single
     def gettext():
         pred =[]
-        print 'Correct till here 3'
+        print('Correct till here 3')
         global content
         content1 = entry.get()
         content = list(content1.split('\t'))
@@ -22,8 +22,9 @@ def page2():
         vfi1 = VFI_single.vfi(content)
         pred.append(vfi1)
         vfi1 = 'The class predicted by VFI1 is: '+str(vfi1)
-        print vfi1
+        print(vfi1)
         knn = KNN_single.knn(content)
+        print("KNN_single returned ", knn)
         pred.append(knn)
         knn = 'The class predicted by KNN is: '+str(knn)
         svm = SVM_single.svm(content)
@@ -64,9 +65,9 @@ def page2():
         for i in range(len(pred)):
             if(i not in count.keys()):
                 count.update({pred[i]:pred.count(pred[i])})
-        print count
-        m = max(count.iteritems(), key=operator.itemgetter(1))[0]
-        message= 'MOST PROBABLE CLASS:' + str(m)
+        print(count)
+        m = max(count.items(), key=operator.itemgetter(1))[0]
+        message= 'MOST PROBABLE CLASS : ' + str(m)
         label12.config(text=message)
             
 
