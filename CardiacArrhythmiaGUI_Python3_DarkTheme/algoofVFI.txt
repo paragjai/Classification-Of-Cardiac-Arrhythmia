@@ -1,0 +1,13 @@
+For a particular feature under consideration,
+its highest and lowest value is found for that particular class.
+
+Feature x -> Highest and Lowest Value -> Class y
+y varies from 1 to 16
+x varies from 1 to 278
+
+For each feature x -> For each class y -> Find all the instances -> Highest and Lowest Value -> Append to list h_and_l
+
+sort(h_and_l)
+
+
+

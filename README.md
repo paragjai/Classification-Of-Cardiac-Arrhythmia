@@ -8,7 +8,7 @@
 			<li><b>Check accuracies of algorithms.</b></li>
 		</ol>
 </ol>
-<b>Both of its features mentioned above has been tested with Python3. Every single combination of inputs worked successfully. GUI has a white theme to it.</b>
+<b>Both of its features mentioned above has been tested with Python3. Every single combination of inputs worked successfully. GUI has a Dark theme to it. This was present during the paper presentation in front of the selection committee as well.</b><br>
 
-<b>CardiacArrhythmia.mp4 demonstrates the work accomplished by the team.</b>
+CardiacArrhythmia.mp4 demonstrates the work accomplished by the team.
 
