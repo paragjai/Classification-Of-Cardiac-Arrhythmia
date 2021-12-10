@@ -8,3 +8,4 @@
 			<li><b>Check accuracies of algorithms.</b></li>
 		</ol>
 </ol>
+<b>Both of its features mentioned above has been tested with Python3. Every single combination of inputs worked successfully. GUI has a white theme to it.</b>
